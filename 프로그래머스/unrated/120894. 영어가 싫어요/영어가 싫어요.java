@@ -2,19 +2,20 @@ class Solution {
     public long solution(String numbers) {
         long answer = 0;
         
-        // 문자열 배열을 생성하고 각 숫자 담아주기
-        String[] eng = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        // 영단어를 숫자로 대체
+        numbers = numbers.replace("zero", "0");
+        numbers = numbers.replace("one", "1");
+        numbers = numbers.replace("two", "2");
+        numbers = numbers.replace("three", "3");
+        numbers = numbers.replace("four", "4");
+        numbers = numbers.replace("five", "5");
+        numbers = numbers.replace("six", "6");
+        numbers = numbers.replace("seven", "7");
+        numbers = numbers.replace("eight", "8");
+        numbers = numbers.replace("nine", "9");
         
-         // for문을 돌려 numbers에 있는 숫자가 eng 배열의 몇 번째 인덱스인지 반환
-        for(int n = 0; n < numbers.length();) {
-            for(int i = 0; i < eng.length; i++) {
-                if(numbers.startsWith(eng[i], n)) { // n번째 인덱스부터 eng 원소값과 일치하는지 검사
-                    answer = answer * 10 + i; // 자릿수 계산 위해 10 곱한 후 i(인덱스)를 더해줌
-                    n += eng[i].length(); // 영단어 길이만큼 n 더해줌 
-                }
-            }
-        }
-        
+        // 문자열 numbers를 long으로 변환 후 리턴
+        answer = Long.parseLong(numbers); 
         return answer;
     }
 }
