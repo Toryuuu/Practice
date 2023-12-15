@@ -2,11 +2,9 @@ class Solution {
     public int solution(int n) {
         int answer = 0;
         
-        // n 원소를 하나씩 분리하여 문자열 배열에 저장
-        String[] str = String.valueOf(n).split("");
-        
-        for(String s : str) {
-            answer += Integer.parseInt(s);
+        while(n > 0) {
+            answer += (n % 10); // 일의 자리부터 더하기
+            n /= 10; // n에서 일의 자리 없애고 반복
         }
         
         return answer;
