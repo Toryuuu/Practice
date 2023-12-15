@@ -1,14 +1,9 @@
+import java.lang.Math;
+
 class Solution {
     public int solution(int n) {
-        int answer = 0;
-        
-        for(int i = 1; i <= 1000; i++) {
-            if(i * i == n) {
-                answer = 1;
-                break;
-            } else
-                answer = 2;
-        }
+        // n의 제곱근이 1로 나눈 나머지가 0이면
+        int answer = (Math.sqrt(n) % 1 == 0)? 1: 2;
         
         return answer;
     }
