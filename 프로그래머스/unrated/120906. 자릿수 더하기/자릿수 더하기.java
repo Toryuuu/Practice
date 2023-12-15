@@ -3,10 +3,10 @@ class Solution {
         int answer = 0;
         
         // n 원소를 하나씩 분리하여 문자열 배열에 저장
-        String[] str = Integer.toString(n).split("");
+        String[] str = String.valueOf(n).split("");
         
-        for(int i = 0; i < str.length; i++) {
-            answer += Integer.parseInt(str[i]);
+        for(String s : str) {
+            answer += Integer.parseInt(s);
         }
         
         return answer;
