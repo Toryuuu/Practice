@@ -1,33 +1,25 @@
-import java.util.ArrayList;
-
 class Solution {
     public String[] solution(String my_str, int n) {
         
-        ArrayList<String> sList = new ArrayList<>();
+        // 배열 answer의 크기(쪼개지는 덩어리 개수)
+        int len = (my_str.length() + n - 1) / n;
         
-        int count = 0;
+        String[] answer = new String[len];
         
-        while(true) { // 무한반복
-            if(my_str.length() <= n) {
-              if(my_str.length() == 0) {
-                  break; // 남은 문자열이 없으면 빠져나감
-              } else {
-                  sList.add(my_str); // 남은 문자열을 리스트에 추가
-                  break; // 추가 후 빠져나감
-              } 
-            } 
+        // 각 덩어리마다 시작과 끝 인덱스 지정하기
+        for(int i = 0; i < len; i++) {
+            int start = n * i; // 시작점 : n의 배수
+            int end = 0; // 끝은 0으로 초기화
             
-            String str = my_str.substring(0, n); // 처음부터 n-1 인덱스까지의 문자열
-            sList.add(str); // 리스트에 추가
-            count++;
-            my_str = my_str.substring(n); // 문자열에서 str 없앰
-        }
-        
-        String[] answer = new String[sList.size()];
-        
-        // 리스트 값을 배열 answer에 담아줌
-        for(int i = 0; i < sList.size(); i++) {
-            answer[i] = sList.get(i); 
+            if(start + n >= my_str.length()) {
+                // 시작점이 문자열을 넘어가면
+                end = my_str.length(); // 끝 인덱스 = 문자열의 마지막 인덱스
+            } else {
+                // 시작점이 문자열 내인 경우
+                end = start + n; // 끝 인덱스 = 시작점 + n(n의 배수)
+            }
+             // answer에 잘라낸 각 덩어리를 대입(end : end-1 인덱스까지 잘라냄)
+             answer[i] = my_str.substring(start, end);   
         }
         
         return answer;
