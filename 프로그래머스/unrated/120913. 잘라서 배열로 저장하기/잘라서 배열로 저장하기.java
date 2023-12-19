@@ -1,25 +1,24 @@
 class Solution {
     public String[] solution(String my_str, int n) {
         
-        // 배열 answer의 크기(쪼개지는 덩어리 개수)
-        int len = (my_str.length() + n - 1) / n;
+        int len = 0; // answer의 크기(잘라낼 덩어리 갯수)
         
+        if(my_str.length() % n == 0) {
+            len = my_str.length() / n;
+        } else if(my_str.length() % n > 0) {
+            len = (my_str.length() / n) + 1;
+        }
+       
         String[] answer = new String[len];
         
-        // 각 덩어리마다 시작과 끝 인덱스 지정하기
+        // 각 덩어리를 대상으로 자르기
         for(int i = 0; i < len; i++) {
-            int start = n * i; // 시작점 : n의 배수
-            int end = 0; // 끝은 0으로 초기화
-            
-            if(start + n >= my_str.length()) {
-                // 시작점이 문자열을 넘어가면
-                end = my_str.length(); // 끝 인덱스 = 문자열의 마지막 인덱스
-            } else {
-                // 시작점이 문자열 내인 경우
-                end = start + n; // 끝 인덱스 = 시작점 + n(n의 배수)
-            }
-             // answer에 잘라낸 각 덩어리를 대입(end : end-1 인덱스까지 잘라냄)
-             answer[i] = my_str.substring(start, end);   
+            if(my_str.length() >= n) {
+                // n씩 나눌 수 있는 경우
+                answer[i] = my_str.substring(0, n); // 0부터 n-1 인덱스까지 answer에 대입
+                my_str = my_str.substring(n, my_str.length()); // 문자열을 n부터 끝까지로 재설정
+            } else // 나머지 부분
+                answer[i] = my_str.substring(0, my_str.length()); // 나머지 부분 : 처음부터 끝까지
         }
         
         return answer;
