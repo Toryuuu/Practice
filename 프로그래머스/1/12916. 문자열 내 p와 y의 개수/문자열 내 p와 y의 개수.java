@@ -2,13 +2,13 @@ class Solution {
     boolean solution(String s) {
         boolean answer = true;
         int count = 0; 
+         s = s.toLowerCase(); // 소문자로 통일
         
         // p의 개수만큼 +, y의 개수만큼 -
         for(int i = 0; i < s.length(); i++) {
-            char letter = s.charAt(i);
-            if(letter == 'p' || letter == 'P') {
+            if(s.charAt(i) == 'p') {
                 count++;
-            } else if(letter == 'y' || letter == 'Y') {
+            } else if(s.charAt(i) == 'y') {
                 count--;
             }
         }
