@@ -1,21 +1,21 @@
 class Solution {
     boolean solution(String s) {
         boolean answer = true;
-        int count = 0; 
-         s = s.toLowerCase(); // 소문자로 통일
-        
-        // p의 개수만큼 +, y의 개수만큼 -
+        int p = 0; // p의 개수
+        int y = 0; // q의 개수
+		s = s.toLowerCase(); // 소문자로 통일
+
         for(int i = 0; i < s.length(); i++) {
-            if(s.charAt(i) == 'p') {
-                count++;
-            } else if(s.charAt(i) == 'y') {
-                count--;
-            }
+            // p와 y의 개수 세기
+            if(s.charAt(i) == 'p') 
+                p++;
+            else if(s.charAt(i) == 'y') 
+                y++;
         }
-        // p와 y의 개수가 같지 않으면
-        if(count != 0) {
+        // p와 y 개수가 다를 경우
+        if(p != y) {
             answer = false;
-        } // 같으면 기본값 return 리턴
+        } // 그 외(같거나 없을 경우)는 기본값 true 리턴
 
         return answer;
     }
