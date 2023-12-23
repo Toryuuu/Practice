@@ -3,8 +3,10 @@ import java.lang.Math;
 class Solution {
     public long solution(long n) {
         
-        if(Math.pow((int)Math.sqrt(n), 2) == n) {
-            return (long)Math.pow(Math.sqrt(n) + 1, 2);
+        double x = Math.sqrt(n); // n의 제곱근
+        
+        if(Math.pow((int)x, 2) == n) {
+            return (long)Math.pow(x + 1, 2);
         } else
             return -1;
     }
