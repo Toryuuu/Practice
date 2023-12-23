@@ -7,10 +7,12 @@ class Solution {
         
         int sum = 0; // 자릿수의 합
         
+        // 문자열의 각 원소(자릿수)를 더한 후 int로 형변환
         for(String s : str) {
             sum += Integer.parseInt(s);
         }
         
+        // x가 자릿수의 합으로 나눠떨어지면 true 리턴
         if(x % sum == 0) {
             answer = true;
         }
