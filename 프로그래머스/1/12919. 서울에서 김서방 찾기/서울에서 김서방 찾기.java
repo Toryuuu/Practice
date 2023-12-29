@@ -1,15 +1,14 @@
 class Solution {
     public String solution(String[] seoul) {
-        int index = -1; // "Kim"의 인덱스
+
+        String answer = "";
         
         for(int i = 0; i < seoul.length; i++) {
             if(seoul[i].equals("Kim")) {
-                index = i;
+                answer = "김서방은 " + i + "에 있다";
                 break;
             }
         }
-        
-        String answer = "김서방은 " + index + "에 있다";
         
         return answer;
     }
