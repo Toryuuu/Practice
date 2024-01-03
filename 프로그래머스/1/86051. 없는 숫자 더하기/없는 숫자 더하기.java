@@ -3,26 +3,17 @@ import java.util.*;
 class Solution {
     public int solution(int[] numbers) {
         int answer = 0;
-        int[] num = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] num = new int[10]; // 크기가 10인 배열
         
-        // 없는 숫자를 저장할 ArrayList 생성
-        List<Integer> list = new ArrayList<Integer>();
-        
-        for(int i = 0; i < num.length; i++) {
-            boolean found = false; // 기본값 false로 설정
-           for(int j = 0; j < numbers.length; j++) {
-               if(num[i] == numbers[j]) {
-                   found = true;
-                   break; // 값이 일치할 경우 빠져나감
-               }
-           }
-           if(!found) {
-               list.add(num[i]); // 없는 숫자만 리스트에 추가
-           }
+        // 주어진 배열의 원소값에 해당하는 num 인덱스에 1 대입
+        for(int i = 0; i < numbers.length; i++) {
+            num[numbers[i]] = 1; 
         }
         
-        for(int i = 0; i < list.size(); i++) {
-            answer += list.get(i); // 없는 숫자들의 합  
+        // 원소값이 1이 아닌 인덱스를 모두 더해줌
+        for(int i = 0; i < num.length; i++) {
+            if(num[i] != 1)
+                answer += i;
         }
         
         return answer;
