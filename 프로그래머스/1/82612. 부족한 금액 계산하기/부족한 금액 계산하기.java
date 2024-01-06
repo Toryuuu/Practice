@@ -7,11 +7,8 @@ class Solution {
             total += (long)(price * i);
         }
         
-        if(money >= total) { // 금액이 부족하지 않은 경우
-            answer = 0;
-        } else // 금액이 부족할 경우
-            answer = total - money;
-        
+        answer = (money >= total)? 0: total - money;
+       
         return answer;
     }
 }
