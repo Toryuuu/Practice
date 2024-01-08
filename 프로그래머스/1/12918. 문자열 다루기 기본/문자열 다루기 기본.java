@@ -2,14 +2,10 @@ class Solution {
     public boolean solution(String s) {
         boolean answer = true;
         
-        if(s.length() == 4 || s.length() == 6) {
-            for(int i = 0; i < s.length(); i++) {
-                if(!(s.charAt(i) >= '0' && s.charAt(i) <= '9')) {
-                    answer = false;
-                    break;
-                } 
-            }
-        } else
+        // 4개 혹은 6개의 숫자로 구성된 문자열
+        String str = "\\d{4}|\\d{6}"; 
+        
+        if(!s.matches(str))
             answer = false;
         
         return answer;
