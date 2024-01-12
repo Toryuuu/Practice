@@ -5,12 +5,15 @@ public class Solution {
         
         ArrayList<Integer> list = new ArrayList<>();
         
-        list.add(arr[0]); // 첫 번째 원소는 무조건 추가
-        
-        // arr[1]부터 순회하면서 연속되지 않은 숫자만 list에 추가
-        for(int i = 1; i < arr.length; i++) {
-            if(arr[i] != arr[i - 1]) {
-                list.add(arr[i]);
+        for(int i = 0; i < arr.length; i++) {
+            if(i == 0) {
+                list.add(arr[0]); // 첫 번째 원소 무조건 추가
+                continue;
+            } else {
+                if(list.get(list.size() - 1) == arr[i]) {
+                    continue; // 다음에 들어갈 arr 원소가 list의 마지막 원소와 똑같으면 skip
+                } else
+                    list.add(arr[i]); // 똑같지 않으면 추가
             }
         }
         
