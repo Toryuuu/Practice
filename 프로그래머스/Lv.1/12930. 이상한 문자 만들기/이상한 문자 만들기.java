@@ -2,15 +2,21 @@ class Solution {
     public String solution(String s) {
         String answer = "";
         
-        // 공백 포함 한 글자씩 구분
-        String[] sArray = s.split("");
-        int cnt = 0; // 인덱스 
+        s = s.toLowerCase(); // 소문자로 통일시키기
         
-        for(String str : sArray) {
-            // 공백이 아닌 원소에 인덱스 1씩 증가
-            cnt = str.contains(" ")? 0: cnt + 1;
-            // 인덱스가 짝수면 소문자로, 홀수면 대문자로 변환
-            answer += (cnt % 2 == 0)? str.toLowerCase(): str.toUpperCase();
+        String[] sArray = s.split(""); // 한 글자씩 분리
+        int idx = 0; // 인덱스
+        
+        for(int i = 0; i < sArray.length; i++) {
+            if(idx % 2 == 0) {
+                sArray[i] = sArray[i].toUpperCase();
+                // 짝수번째 알파벳 대문자로 변환
+            }
+            if(sArray[i].isBlank()) {
+                idx = - 1; // 공백일 경우 인덱스 1 감소
+            }
+            answer += sArray[i];
+            idx++;
         }
         
         return answer;
