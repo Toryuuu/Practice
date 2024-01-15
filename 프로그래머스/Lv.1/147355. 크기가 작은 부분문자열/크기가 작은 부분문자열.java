@@ -1,19 +1,19 @@
 class Solution {
     public int solution(String t, String p) {
         int answer = 0;
-        int tLen = t.length(); // t 길이
-        int pLen = p.length(); // p 길이
         
-        for(int i = 0; i <= tLen - pLen; i++) {
-            // a. 문자열 t의 일부를 p 길이만큼 자르기
-            String str = t.substring(i, i + pLen);
-            long num = Long.parseLong(str);
-            long pp = Long.parseLong(p);
+        int start = 0; // 시작 인덱스
+        int end = p.length(); // 끝 인덱스(p의 길이)
+        
+        while(end < t.length() + 1) {
+            long temp = Long.parseLong(t.substring(start, end)); // p 길이만큼 자른 문자열(인덱스 0 ~ p 길이)
             
-            // b. 자른 문자열 숫자와 p 대소비교
-            if(num <= pp) {
-                answer++;
+            if(temp <= Long.parseLong(p)) {
+                answer++; // 자른 숫자가 p 이하면 1 증가시킴
             }
+            // 인덱스 1씩 증가시킨 후 반복 
+            start++;
+            end++;
         }
         
         return answer;
