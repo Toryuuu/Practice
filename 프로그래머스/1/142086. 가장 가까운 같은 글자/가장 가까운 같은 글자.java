@@ -1,19 +1,25 @@
+import java.util.HashMap;
+import java.util.Map;
+
 class Solution {
     public int[] solution(String s) {
         int[] answer = new int[s.length()];
         
-        answer[0] = -1; // 맨 첫 글자는 무조건 -1
+        // 원소값과 인덱스를 추가할 해시맵 생성
+        Map<Character, Integer> map = new HashMap<>();
         
-        for(int i = 1; i < s.length(); i++) {
-            int x = s.lastIndexOf(s.substring(i, i+1), i - 1); // i번째 인덱스값을 i-1 인덱스부터 역순으로 찾기 -> 인덱스(0부터 센) 반환
-            
-            // 같은 글자가 있으면
-            if(x != -1) {
-                answer[i] = i - x; 
+        for(int i = 0; i < s.length(); i++) {
+            // map에 i번째 원소가 없으면
+            if(!map.containsKey(s.charAt(i))) {
+                answer[i] = -1; 
+                map.put(s.charAt(i), i); // map에 추가
+            } 
+            // 원소가 map에 존재하는 경우
+            else {
+                answer[i] = i - map.get(s.charAt(i));
+                // i - key(원소값)과 짝지어진 value(인덱스)
+                map.put(s.charAt(i), i); // map에 추가
             }
-            // 같은 글자가 없으면 -1 반환
-            else
-                answer[i] = x;
         }
         
         return answer;
