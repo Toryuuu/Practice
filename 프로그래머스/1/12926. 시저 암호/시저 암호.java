@@ -2,25 +2,23 @@ class Solution {
     public String solution(String s, int n) {
         String answer = "";
         
-        char[] word = s.toCharArray(); // 한글자씩 분리
+        int num = 0;
         
-        for(int i = 0; i < word.length; i++) {
-            char ch = word[i]; // i번째 문자(인덱스값)
+        for(int i = 0; i < s.length(); i++) {
+            num = s.charAt(i) + n; // 원솟값에 n을 더한 값
             
-            // 인덱스값이 대문자일 경우
-            if(Character.isUpperCase(ch)) {
-                ch = (char)('A' + (ch - 'A' + n) % 26);
+            // 원솟값이 공백일 경우 공백 추가
+            if(s.charAt(i) == ' ') {
+                answer += " ";
             } 
-            // 인덱스값이 소문자일 경우
-            else if(Character.isLowerCase(ch)) {
-                ch = (char)('a' + (ch - 'a' + n) % 26);
+            // 대문자면서 연산 후 'Z' 넘길 경우 or 'z'를 넘길 경우 26 빼주기(아스키코드 A : 65, Z : 90, a : 97, z : 122)
+            else if(s.charAt(i) < 91 && num > 90 || num > 122) {
+                num -= 26; // 다시 65 or 97로 돌아감  
+                answer += (char) num;
             } 
-            // 인덱스값이 공백일 경우
-            else {
-                ch = ' '; // 공백 그대로 추가
-            }
-                
-            answer += ch;
+            // 연산이 Z or z 범위 내일 경우
+            else
+                answer += (char) num;
         }
         
         return answer;
