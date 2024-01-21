@@ -1,26 +1,31 @@
 class Solution {
     public String solution(String s, int n) {
-        String answer = "";
         
-        int num = 0;
+        StringBuilder sb = new StringBuilder();
         
         for(int i = 0; i < s.length(); i++) {
-            num = s.charAt(i) + n; // 원솟값에 n을 더한 값
+            int num = s.charAt(i) + n; // 연산 후의 값
             
-            // 원솟값이 공백일 경우 공백 추가
+            // 1. 원솟값이 공백일 경우
             if(s.charAt(i) == ' ') {
-                answer += " ";
+                sb.append(" "); 
             } 
-            // 대문자면서 연산 후 'Z' 넘길 경우 or 'z'를 넘길 경우 26 빼주기(아스키코드 A : 65, Z : 90, a : 97, z : 122)
-            else if(s.charAt(i) < 91 && num > 90 || num > 122) {
-                num -= 26; // 다시 65 or 97로 돌아감  
-                answer += (char) num;
+            // 2. 연산한 값이 소문자 z를 넘어가는 경우
+            else if(num > 'z') {
+                int diff = num - 'z'; 
+                sb.append((char)('a' + diff%26 - 1));
+            }
+            // 3. 연산한 값이 대문자이면서 Z를 넘어가는 경우
+            else if(num > 'Z' && s.charAt(i) <= 'Z') {
+                int diff = num - 'Z'; 
+                sb.append((char)('A' + diff%26 - 1));
             } 
-            // 연산이 Z or z 범위 내일 경우
-            else
-                answer += (char) num;
+            // 4. 연산한 값이 대/소문자 범위 내인 경우
+            else {
+                sb.append((char) num);    
+            }
         }
-        
-        return answer;
+            
+        return sb.toString();
     }
 }
