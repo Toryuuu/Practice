@@ -3,8 +3,6 @@ import java.util.Map;
 
 class Solution {
     public int solution(String s) {
-        int answer = 0;
-        int n = 0;
         
         Map<String, Integer> map = new HashMap<>();
         
@@ -20,27 +18,10 @@ class Solution {
         map.put("eight", 8);
         map.put("nine", 9);
         
-        // s 길이 초과시 빠져나옴
-        while(n < s.length()) {
-            // 문자열 인덱스값이 숫자일 경우
-            if(Character.isDigit(s.charAt(n))) {
-                // 자릿수 맞추기 위해 10을 곱한 후 숫자 더해주기
-                answer = answer * 10 + Character.getNumericValue(s.charAt(n));
-                n += 1; // 한 자리씩 증가
-            } else {
-                for(String i : map.keySet()) {
-                // 문자열 s가 인덱스 n부터 i로 시작하는지 검사 
-                if(s.startsWith(i, n)) {
-                    // 자릿수 맞추기 위해 10을 곱한 후 값 더해주기
-                    answer = answer * 10 + map.get(i);
-                    // n에 i 길이만큼 더한 후 반복
-                    n += i.length();
-                    break;
-                } 
-              }
-            }
+        for(Map.Entry<String, Integer> entry : map.entrySet()) {
+            s = s.replace(entry.getKey(), entry.getValue().toString()); // map에 저장된 key(영단어)를 String 변환된 value(숫자)로 치환하기  
         }
-        
-        return answer;
+        // int로 변환하여 리턴
+        return Integer.parseInt(s);
     }
 }
