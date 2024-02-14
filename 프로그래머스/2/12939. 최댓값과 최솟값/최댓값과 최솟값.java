@@ -1,18 +1,20 @@
+import java.util.*;
+
 class Solution {
     public String solution(String s) {
+        // Collections 기능을 쓰기 위해 리스트 생성
+        List<Integer> list = new ArrayList<Integer>();
         
         // 공백 단위로 잘라서 문자 배열에 저장
-        String[] temp = s.split(" ");
-        int min, max;
-        min = max = Integer.parseInt(temp[0]);
+        String[] num = s.split(" ");
         
-        // 대소비교하면서 정렬하기
-        for(int i = 1; i < temp.length; i++) {
-            int n = Integer.parseInt(temp[i]);
-            if(min > n) min = n; // 현재 최솟값보다 작은 수를 min으로 대체
-            if(max < n) max = n; // 현재 최댓값보다 큰 수를 max로 대체
+        // list에 문자 추가 
+        for(int i = 0; i < num.length; i++) {
+            list.add(Integer.parseInt(num[i]));    
         }
         
-        return min + " " + max;
+        String answer = Collections.min(list) + " " + Collections.max(list);
+        
+        return answer;
     }
 }
