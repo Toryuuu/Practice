@@ -1,23 +1,18 @@
-import java.util.*;
-
 class Solution {
     public String solution(String s) {
-        String answer = "";
         
         // 공백 단위로 잘라서 문자 배열에 저장
-        String[] numbers = s.split(" ");
+        String[] temp = s.split(" ");
+        int min, max;
+        min = max = Integer.parseInt(temp[0]);
         
-        // 문자 배열 원소들을 정수형으로 변환
-        int[] num = new int[numbers.length];
-        
-        for(int i = 0; i < num.length; i++) {
-            num[i] = Integer.parseInt(numbers[i]);
+        // 대소비교하면서 정렬하기
+        for(int i = 1; i < temp.length; i++) {
+            int n = Integer.parseInt(temp[i]);
+            if(min > n) min = n; // 현재 최솟값보다 작은 수를 min으로 대체
+            if(max < n) max = n; // 현재 최댓값보다 큰 수를 max로 대체
         }
         
-        Arrays.sort(num); // 오름차순 정렬
-        
-        answer = num[0] + " " + num[num.length - 1];
-        
-        return answer;
+        return min + " " + max;
     }
 }
