@@ -3,7 +3,7 @@ class Solution {
         String answer = "";
         
         // 공백 기준으로 나누어 배열에 저장
-        String[] words = s.split(" ", -1);
+        String[] words = s.split(" ", -1); // -1 추가하여 빈 문자열도 포함되도록 함.
         
         for(int i = 0; i < words.length; i++) {
             String word = words[i];
@@ -27,7 +27,7 @@ class Solution {
             }
         }
             // 마지막에 있는 공백 제거
-            if(answer.length() > 0 && answer.charAt(answer.length() - 1) == ' ') {
+            if(answer.length() > 0) {
                 answer = answer.substring(0, answer.length() - 1);
             }
              
